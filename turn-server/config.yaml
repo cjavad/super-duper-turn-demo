@@ -1,0 +1,16 @@
+# TURN Server Configuration
+
+# Server settings
+port: 3478
+realm: "turn.example.com"
+auth_secret: "your-secret-key"
+
+# Relay settings
+relay:
+  min_port: 49152
+  max_port: 65535
+
+# Logging settings
+log:
+  level: "info"  # debug, info, warn, error
+  format: "json"  # json, console
