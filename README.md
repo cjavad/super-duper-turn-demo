@@ -66,7 +66,7 @@ The frontend client is a web application that demonstrates WebRTC capabilities:
 
 - HTML5, CSS3, and JavaScript
 - WebRTC API
-- Modern frontend framework (React/Vue.js)
+- Modern frontend framework (Svelte)
 - WebSockets for signaling
 
 ### Python WebRTC Client
@@ -144,6 +144,8 @@ The Python client provides similar functionality to the web client but in a Pyth
    ```bash
    npm run dev
    ```
+   
+   Note: The frontend is built with Svelte and uses Vite as the build tool.
 
 5. Access the client at `http://localhost:3000`
 
@@ -238,7 +240,7 @@ For production deployment:
 
 ### Frontend Client
 - [WebRTC API](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API)
-- [React](https://reactjs.org/) or [Vue.js](https://vuejs.org/)
+- [Svelte](https://svelte.dev/) - Reactive frontend framework
 - [simple-peer](https://github.com/feross/simple-peer) - WebRTC peer connection simplification
 
 ### Python Client
