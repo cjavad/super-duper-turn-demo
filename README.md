@@ -66,7 +66,7 @@ The frontend client is a web application that demonstrates WebRTC capabilities:
 
 - HTML5, CSS3, and JavaScript
 - WebRTC API
-- Modern frontend framework (React/Vue.js)
+- Modern frontend framework (Svelte)
 - WebSockets for signaling
 
 ### Python WebRTC Client
@@ -90,7 +90,7 @@ The Python client provides similar functionality to the web client but in a Pyth
 ### Prerequisites
 
 - Go 1.16+ (for TURN server)
-- Node.js 14+ (for frontend client)
+- Node.js 18+ (for frontend client)
 - Python 3.8+ (for Python client)
 - Docker (optional, for containerized deployment)
 
@@ -122,9 +122,9 @@ The Python client provides similar functionality to the web client but in a Pyth
 
 ### Frontend Client Setup
 
-1. Navigate to the frontend directory:
+1. Navigate to the Svelte frontend directory:
    ```bash
-   cd frontend
+   cd svelte-frontend
    ```
 
 2. Install dependencies:
@@ -132,20 +132,25 @@ The Python client provides similar functionality to the web client but in a Pyth
    npm install
    ```
 
-3. Configure the client (edit `.env`):
+3. Configure the client (create or edit `.env` in svelte-frontend):
    ```
-   TURN_SERVER_URL=turn:turn.example.com:3478
-   TURN_USERNAME=username
-   TURN_CREDENTIAL=password
-   SIGNALING_SERVER=wss://signaling.example.com
+   VITE_TURN_SERVER=turn:turn.example.com:3478
+   VITE_TURN_USERNAME=username
+   VITE_TURN_PASSWORD=password
+   VITE_SIGNALING_SERVER=http://localhost:8080
    ```
 
 4. Start the development server:
    ```bash
    npm run dev
    ```
+   
+   Note: The frontend is built with Svelte and uses Vite as the build tool. The dev server is configured to run on port 3000.
 
 5. Access the client at `http://localhost:3000`
+
+6. Note about legacy React app:
+   The previous React implementation remains in the `frontend/` directory for reference but is deprecated. Please use only `svelte-frontend/` for development and deployment.
 
 ### Python Client Setup
 
@@ -190,10 +195,13 @@ cd turn-server
 docker build -t turn-server .
 docker run -p 3478:3478/udp -p 3478:3478/tcp turn-server
 
-# Build and run the frontend
-cd frontend
-docker build -t webrtc-frontend .
-docker run -p 80:80 webrtc-frontend
+# Build and run the frontend (Svelte)
+cd svelte-frontend
+# No Dockerfile is provided for the frontend in this repo. Run locally with Vite:
+#   npm install && npm run dev
+# Or build static files:
+#   npm run build
+# Then serve the `dist/` directory with your preferred static server.
 
 # Build and run the Python client (if needed)
 cd python-client
@@ -238,7 +246,7 @@ For production deployment:
 
 ### Frontend Client
 - [WebRTC API](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API)
-- [React](https://reactjs.org/) or [Vue.js](https://vuejs.org/)
+- [Svelte](https://svelte.dev/) - Reactive frontend framework
 - [simple-peer](https://github.com/feross/simple-peer) - WebRTC peer connection simplification
 
 ### Python Client
